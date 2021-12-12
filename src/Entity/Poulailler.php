@@ -85,6 +85,26 @@ class Poulailler
      */
     private $employes;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Medicament::class, inversedBy="poulailler")
+     */
+    private $medicament;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Aliment::class, inversedBy="poulailler")
+     */
+    private $aliment;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Depense::class, inversedBy="poulailler")
+     */
+    private $depense;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Vente::class, inversedBy="poulaillers")
+     */
+    private $vente;
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
@@ -207,6 +227,54 @@ class Poulailler
     public function setEmployes(?Employe $employes): self
     {
         $this->employes = $employes;
+
+        return $this;
+    }
+
+    public function getMedicament(): ?Medicament
+    {
+        return $this->medicament;
+    }
+
+    public function setMedicament(?Medicament $medicament): self
+    {
+        $this->medicament = $medicament;
+
+        return $this;
+    }
+
+    public function getAliment(): ?Aliment
+    {
+        return $this->aliment;
+    }
+
+    public function setAliment(?Aliment $aliment): self
+    {
+        $this->aliment = $aliment;
+
+        return $this;
+    }
+
+    public function getDepense(): ?Depense
+    {
+        return $this->depense;
+    }
+
+    public function setDepense(?Depense $depense): self
+    {
+        $this->depense = $depense;
+
+        return $this;
+    }
+
+    public function getVente(): ?Vente
+    {
+        return $this->vente;
+    }
+
+    public function setVente(?Vente $vente): self
+    {
+        $this->vente = $vente;
 
         return $this;
     }

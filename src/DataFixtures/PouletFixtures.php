@@ -3,12 +3,13 @@
 namespace App\DataFixtures;
 
 use Faker\Factory;
-use App\Entity\Poussin;
+use App\Entity\User;
+use App\Entity\Poulet;
 use Faker\Provider\zh_TW\DateTime;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 
-class PoussinFixtures extends Fixture
+class PouletFixtures extends Fixture
 {
 
     public const Poulet = 'poulet';
@@ -20,20 +21,23 @@ class PoussinFixtures extends Fixture
         $faker= Factory::create('fr_FR');
 
         $total = [100,2000,1000,600,800];
-        $chair = [7,120,70,42,50];
+        $pondeuse = [30,600,300,180,240];
+        $chair = [70,1400,700,420,560];
 
 
 
-        for ($i=1; $i <=6 ; $i++) {
+        for ($i=1; $i <=5 ; $i++) {
 
 
-            $poussin = new Poussin();
+            $poulet = new Poulet();
             
-            $poussin
+            $poulet
             ->setNbreTotal($faker->randomElement($total))
+            ->setNbrePondeuse($faker->randomElement($pondeuse))
+            ->setNbrePchair($faker->randomElement($chair))
             ->setNbreDeces(0)
             ;
-            $manager->persist($poussin);
+            $manager->persist($poulet);
 
 
 

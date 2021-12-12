@@ -49,6 +49,11 @@ class Poulet
      */
     private $poulaillers;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Oeuf::class, inversedBy="poulet")
+     */
+    private $oeuf;
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
@@ -164,6 +169,18 @@ class Poulet
                 $poulailler->setPoulet(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getOeuf(): ?Oeuf
+    {
+        return $this->oeuf;
+    }
+
+    public function setOeuf(?Oeuf $oeuf): self
+    {
+        $this->oeuf = $oeuf;
 
         return $this;
     }

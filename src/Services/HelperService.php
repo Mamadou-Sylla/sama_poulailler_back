@@ -86,16 +86,6 @@ class HelperService
     public function EditUser(Request $request)
     {
         $id = $request->get('id');
-        // $user =  $this->repoUser->findOneBy(['id' => $id]);
-        // dd($user);
-        // if($user)
-        // {
-        //     return new JsonResponse("User existe pas",Response::HTTP_OK);
-        // }
-        // else
-        // {
-        //  return new JsonResponse("User n'existe pas",Response::HTTP_OK);
-        // }
         $edit_user = $request->request->all();
         $photo=$request->files->get("photo");
         $photo=fopen($photo->getRealPath(),"rb");
@@ -131,7 +121,7 @@ class HelperService
         // dd($user);
         $user->setPhoto($photo);
         //  dd($user);
-        $this->manager->persist($user);
+        // $this->manager->persist($user);
         $this->manager->flush();
         fclose($photo);
         return $user;

@@ -3,42 +3,41 @@
 namespace App\DataFixtures;
 
 use Faker\Factory;
-use App\Entity\Poussin;
+use App\Entity\Oeuf;
+use App\Entity\User;
 use Faker\Provider\zh_TW\DateTime;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 
-class PoussinFixtures extends Fixture
+class OeufFixtures extends Fixture
 {
 
-    public const Poulet = 'poulet';
+    public const Oeuf = 'oeuf';
 
-
+    
 
     public function load(ObjectManager $manager)
     {
         $faker= Factory::create('fr_FR');
 
-        $total = [100,2000,1000,600,800];
-        $chair = [7,120,70,42,50];
-
+        $total = [100,1200,800,600,450];
+        $casses = [10,120,80,60,45];
 
 
         for ($i=1; $i <=6 ; $i++) {
 
 
-            $poussin = new Poussin();
-            
-            $poussin
+            $oeuf = new Oeuf();
+
+            $oeuf
             ->setNbreTotal($faker->randomElement($total))
-            ->setNbreDeces(0)
+            ->setNbreCasses($faker->randomElement($casses))
             ;
-            $manager->persist($poussin);
+            $manager->persist($oeuf);
 
 
 
         $manager->flush();
-        
         }
         
 
